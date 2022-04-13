@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerItems" >
+        <item>Japan</item>
+        <item>China</item>
+        <item>England</item>
+        <item>France</item>
+    </string-array>
+</resources>

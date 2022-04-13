@@ -8,11 +8,14 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnSave;
-    EditText editTextAge;
+    String editTextAge;
     public static final String fileName = "configure";
 
     @Override
@@ -20,27 +23,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnSave = findViewById(R.id.btnSave);
-        editTextAge = findViewById(R.id.editTextAge);
+        Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
+        String text = mySpinner.getSelectedItem().toString();
+        editTextAge = text;
 
         SharedPreferences sharedPreferences = getSharedPreferences(fileName, MODE_PRIVATE);
-        int ageFromShared = sharedPreferences.getInt("age",0);
-        View view = findViewById(R.id.mainLayput);
-       if(ageFromShared<=10 && ageFromShared>=1){
-            view.setBackgroundResource(R.drawable.imgthieunhi);
-       }else if(ageFromShared<=17 && ageFromShared>=11){
-           view.setBackgroundResource(R.drawable.imgteen);
-       }else if(ageFromShared>=18){
-           view.setBackgroundResource(R.drawable.imgadult);
+        String language = sharedPreferences.getString("language","none");
+        ImageView view = findViewById(R.id.imageView);
+        TextView ngonngu = (TextView) findViewById(R.id.textView3);
+       if(language.equals("Japan")) {
+           mySpinner.setSelection(0);
+           view.setImageResource(R.drawable.imgnhat);
+           ngonngu.setText("こんにちは");
+       }
+       if(language.equals("China")){
+           mySpinner.setSelection(1);
+           view.setImageResource(R.drawable.imgtrungquosc);
+           ngonngu.setText("你好");
+       }
+       if(language.equals("England")){
+           mySpinner.setSelection(2);
+           view.setImageResource(R.drawable.imganh);
+           ngonngu.setText("Hello");
+       }
+       if(language.equals("France")){
+           mySpinner.setSelection(3);
+           view.setImageResource(R.drawable.imgphap);
+           ngonngu.setText("Bonjour");
        }
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int age = Integer.parseInt(editTextAge.getText().toString().trim());
+                String ngonngu = mySpinner.getSelectedItem().toString().trim();
                 SharedPreferences.Editor editor = getSharedPreferences(fileName, MODE_PRIVATE).edit();
 
-                editor.putInt("age", age);
+                editor.putString("language", ngonngu);
                 editor.commit();
             }
         });
