@@ -49,14 +49,17 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
+        android:layout_height="105dp"
         android:gravity="center"
         android:text="Text"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="279dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
         app:srcCompat="@drawable/imgadult" />
 </LinearLayout>

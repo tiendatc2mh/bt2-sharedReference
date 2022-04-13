@@ -56,10 +56,27 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ngonngu = mySpinner.getSelectedItem().toString().trim();
+                String ngonnguSave = mySpinner.getSelectedItem().toString().trim();
+                ImageView viewImg = findViewById(R.id.imageView);
+                if(ngonnguSave.equals("Japan")) {
+                    viewImg.setImageResource(R.drawable.imgnhat);
+                    ngonngu.setText("こんにちは");
+                }
+                if(ngonnguSave.equals("China")){
+                    viewImg.setImageResource(R.drawable.imgtrungquosc);
+                    ngonngu.setText("你好");
+                }
+                if(ngonnguSave.equals("England")){
+                    viewImg.setImageResource(R.drawable.imganh);
+                    ngonngu.setText("Hello");
+                }
+                if(ngonnguSave.equals("France")){
+                    viewImg.setImageResource(R.drawable.imgphap);
+                    ngonngu.setText("Bonjour");
+                }
                 SharedPreferences.Editor editor = getSharedPreferences(fileName, MODE_PRIVATE).edit();
 
-                editor.putString("language", ngonngu);
+                editor.putString("language", ngonnguSave);
                 editor.commit();
             }
         });
